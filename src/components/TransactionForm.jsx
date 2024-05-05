@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const TransactionForm = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
-    date: '',
-    description: '',
-    category: '',
-    amount: ''
+    date: "",
+    description: "",
+    category: "",
+    amount: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -20,10 +20,10 @@ const TransactionForm = ({ onSubmit }) => {
     e.preventDefault();
     onSubmit(formData);
     setFormData({
-      date: '',
-      description: '',
-      category: '',
-      amount: ''
+      date: "",
+      description: "",
+      category: "",
+      amount: "",
     });
   };
 
@@ -43,19 +43,14 @@ const TransactionForm = ({ onSubmit }) => {
         value={formData.description}
         onChange={handleChange}
       />
-      <select
+      <input
+        type="text"
         name="category"
+        placeholder="Category"
         value={formData.category}
         onChange={handleChange}
-      >
-        <option value="">Select Category</option>
-        <option value=" House Bills">House Bills</option>
-        <option value=" Fashion">Fashion</option>
-        <option value="Food">Food</option>
-        <option value="Shopping">Shopping</option>
-        <option value="Clothes">Clothes</option>
-        <option value="Movies">Movies</option>
-      </select>
+      />
+
       <input
         type="number"
         name="amount"
