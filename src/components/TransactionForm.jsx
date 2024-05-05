@@ -1,48 +1,71 @@
 import React, { useState } from 'react';
 
 const TransactionForm = ({ onSubmit }) => {
-  const [description, setDescription] = useState('');
-  const [category, setCategory] = useState('');
-  const [date, setDate] = useState('');
-  const [amount, setAmount] = useState('');
+  const [formData, setFormData] = useState({
+    date: '',
+    description: '',
+    category: '',
+    amount: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(description,category,date,amount);
-    setDescription('');
-    setCategory('');
-    setDate('');
-    setAmount('');
+    onSubmit(formData);
+    setFormData({
+      date: '',
+      description: '',
+      category: '',
+      amount: ''
+    });
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <input
+        type="date"
+        name="date"
+        placeholder="Date"
+        value={formData.date}
+        onChange={handleChange}
+      />
+      <input
         type="text"
+        name="description"
         placeholder="Description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
+        value={formData.description}
+        onChange={handleChange}
       />
-      <input
-        type="text"
-        placeholder="Category"
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-      />
-      <input
-      type='date'
-      value={date}
-      onChange={(e) => setDate(e.target.value)}
-      />
+      <select
+        name="category"
+        value={formData.category}
+        onChange={handleChange}
+      >
+        <option value="">Select Category</option>
+        <option value=" House Bills">House Bills</option>
+        <option value=" Fashion">Fashion</option>
+        <option value="Food">Food</option>
+        <option value="Shopping">Shopping</option>
+        <option value="Clothes">Clothes</option>
+        <option value="Movies">Movies</option>
+      </select>
       <input
         type="number"
+        name="amount"
         placeholder="Amount"
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
+        value={formData.amount}
+        onChange={handleChange}
       />
       <button type="submit">Add Transaction</button>
     </form>
   );
-}
+};
 
 export default TransactionForm;

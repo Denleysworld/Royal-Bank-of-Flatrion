@@ -1,18 +1,14 @@
-import React from "react";
+import React from 'react';
 
 const Transaction = ({ transactions }) => {
-  if (!Array.isArray(transactions) || transactions.length === 0) {
-    return <p>No transactions to display.</p>;
-  }
-
   return (
     <table>
       <thead>
         <tr>
           <th>Date</th>
           <th>Description</th>
-          <th>Category</th>
           <th>Amount</th>
+          <th>Category</th>
         </tr>
       </thead>
       <tbody>
@@ -20,8 +16,8 @@ const Transaction = ({ transactions }) => {
           <tr key={index}>
             <td>{transaction.date}</td>
             <td>{transaction.description}</td>
-            <td>{transaction.category}</td>
             <td>{transaction.amount}</td>
+            <td>{transaction.category}</td>
           </tr>
         ))}
       </tbody>

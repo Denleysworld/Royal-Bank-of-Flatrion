@@ -1,28 +1,27 @@
-import React ,{useState} from "react";
+import React, { useState } from 'react';
 
+const Filter= ({ onSearch }) => {
+  const [searchTerm, setSearchTerm] = useState('');
 
-const Filter=({onChange}) =>{
-    const [searchTrans, setSearchTrans]=useState('');
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
-    const handleChange= (e)=>{
-        setSearchTrans(e.target.value);
-        onChange(e.target.value);
-    };
-    const handleSearch= ()=>{};
-    return(
-        <div>
-            <input 
-            type="text" 
-            placeholder="Search transaction"
-            value={searchTrans} 
-            onChange={handleChange}
-            />
-            <button onClick={handleSearch}>Surf</button>
-        </div>
-    )
+  const handleClick = () => {
+    onSearch(searchTerm);
+  };
 
+  return (
+    <div className="search-bar">
+      <input
+        type="text"
+        placeholder="Search your recent transactions"
+        value={searchTerm}
+        onChange={handleChange}
+      />
+<button onClick={handleClick} style={{ backgroundImage: `url(https://cdn.vectorstock.com/i/1000x1000/66/76/magnifying-glass-search-icon-vector-6096676.webp)`, backgroundRepeat: 'no-repeat', backgroundSize: 'contain', width: '30px', height: '30px' }}></button>
+    </div>
+  );
+};
 
-}
-
-export default Filter
-
+export default Filter;
